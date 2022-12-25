@@ -9,6 +9,7 @@ import nltk
 from django.contrib.staticfiles import finders
 from django.contrib.auth.decorators import login_required
 
+nltk.download('punkt')
 nltk.download('averaged_perceptron_tagger')
 
 def home_view(request):
