@@ -9,6 +9,8 @@ import nltk
 from django.contrib.staticfiles import finders
 from django.contrib.auth.decorators import login_required
 
+nltk.download('punkt')
+
 def home_view(request):
 	return render(request,'home.html')
 
