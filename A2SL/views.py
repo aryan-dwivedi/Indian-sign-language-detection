@@ -1,6 +1,3 @@
-import nltk
-nltk.download()
-
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -8,8 +5,11 @@ from django.contrib.auth import login,logout
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
+import nltk
 from django.contrib.staticfiles import finders
 from django.contrib.auth.decorators import login_required
+
+nltk.download('punkt')
 
 def home_view(request):
 	return render(request,'home.html')
