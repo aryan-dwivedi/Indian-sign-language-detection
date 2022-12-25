@@ -9,7 +9,10 @@ import nltk
 from django.contrib.staticfiles import finders
 from django.contrib.auth.decorators import login_required
 
-nltk.download()
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
+nltk.download('wordnet')
+nltk.download('stopwords')
 
 def home_view(request):
 	return render(request,'home.html')
