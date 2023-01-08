@@ -11,7 +11,6 @@ from tensorflow import keras
 import skimage
 import numpy as np
 import cv2
-from PIL import Image
 
 from django.contrib.staticfiles import finders
 from django.contrib.auth.decorators import login_required
