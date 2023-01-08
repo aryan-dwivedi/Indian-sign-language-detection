@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<st {% block content %}>
+  <img src="{% url 'video_feed' %}" name="image" class="center" />
+  <p class="subtitles">{{ subtitles }}</p>
+
+  <script>
+    // refresh p tag every 1 second
+    setInterval(function () {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementsByTagName("p")[0].innerHTML = this.responseText;
+        }
+      };
+      xhttp.open("GET", "{% url 'subtitles' %}", true);
+      xhttp.send();
+    }, 1000);
+  </script>
+  {% endblock %}
+</st>

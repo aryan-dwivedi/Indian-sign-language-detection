@@ -10,6 +10,23 @@
   margin-right: auto;
   width: 50%;
 }
+
+.video {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 800;
+  height: 600
+}
+
+.subtitles {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  font-family: "Times New Roman";
+  color: #FFF;
+}
+
 #nav {
   list-style-type: none;
   margin-top:0;
@@ -211,13 +228,14 @@ body
 </head>
 <div style="background-color:#101820FF;color:#F2AA4CFF;padding:10 10 1 10;border: 1px #F2AA4CFF groove;margin-bottom:0;">
 
-<h1 align=center>Audio To Sign Language Tool</h1>
+<h1 align=center>Sign Language Tool</h1>
 </div>
 <br>
 <body>
 <ul id="nav">
   <li class="li"><a class="active" href="{% url 'home' %}">Home</a></li>
-  <li class="li"><a href="{% url 'animation' %}">Convertor</a></li>
+  <li class="li"><a href="{% url 'text-to-sign' %}">Text to Sign</a></li>
+  <li class="li"><a href="{% url 'sign-to-text' %}">Sign to Text</a></li>
   <li class="li"><a href="{% url 'about' %}">About</a></li>
 </ul>
 

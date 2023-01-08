@@ -19,8 +19,11 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('about/',views.about_view,name='about'),
-    path('animation/',views.animation_view,name='animation'),
+    path('about/',views.about_view, name='about'),
+    path('video_feed', views.video_feed, name='video_feed'),
+    path('sign-to-text/',views.sign_to_text, name='sign-to-text'),
+    path('text-to-sign/',views.text_to_sign, name='text-to-sign'),
+    path('subtitles/',views.subtitles, name='subtitles'),
+
     path('',views.home_view,name='home'),
-    path('animation/',views.animation_view,name='animation')
 ]
