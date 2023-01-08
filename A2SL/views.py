@@ -7,6 +7,7 @@ from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 import nltk
 import tensorflow as tf
+from collections import defaultdict
 from tensorflow import keras
 import skimage
 import numpy as np
@@ -22,6 +23,8 @@ nltk.download('stopwords')
 
 model = keras.models.load_model(r"assets/model.h5")
 
+dic = defaultdict(int)
+word = ''
 class VideoCamera(object):
     def __init__(self):
         self.video = cv2.VideoCapture(0)
@@ -164,6 +167,7 @@ def video_feed(request):
                                  content_type='multipart/x-mixed-replace; boundary=frame')
 
 def subtitles(request):
+    global word
     img_file = VideoCamera().get_jpg()
     imageSize = 50
     img_file = skimage.transform.resize(img_file, (imageSize, imageSize, 3))
@@ -176,14 +180,29 @@ def subtitles(request):
         if label == 26:
             subtitles = 'del'
         elif label == 27:
-            subtitles = 'nothing'
+            subtitles = 'space'
         else:
-            subtitles = ' '
+            subtitles = 'space'
+
     else:
         subtitles = chr(65 + label)
 
-    print(subtitles)
-    return HttpResponse(subtitles)
+    dic[subtitles] += 1
+
+    if dic[subtitles] == 3:
+
+        if subtitles == 'del':
+            word = word[:-1]
+        elif subtitles == 'space':
+            word += ' '
+        else:
+            word += subtitles
+        
+        del dic[subtitles]
+
+    return HttpResponse(word)
 
 def sign_to_text(request):
     return render(request, 'signtotext.html')
+
+
